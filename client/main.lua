@@ -297,7 +297,7 @@ end
 
 local function lockpickFinish(success)
 	if success then
-		QBCore.Functions.Notify(Lang:t("success.lockpick_success"), 'success', 2500)
+		exports['SS-Notify']:Alert("Pinehill", "Du lyckades bryta upp låset", 5000, 'success')
 		if closestDoor.data.coords then
 			TaskTurnPedToFaceCoord(playerPed, closestDoor.data.doors[1].objCoords.x, closestDoor.data.doors[1].objCoords.y, closestDoor.data.doors[1].objCoords.z, 0)
 		else
@@ -313,7 +313,7 @@ local function lockpickFinish(success)
 		Wait(1800)
 		TriggerServerEvent('qb-doorlock:server:updateState', closestDoor.id, false, false, true, false) -- Broadcast new state of the door to everyone
 	else
-		QBCore.Functions.Notify(Lang:t("error.lockpick_fail"), 'error', 2500)
+		exports['SS-Notify']:Alert("Pinehill", "Du lyckades inte att bryta upp låset", 5000, 'error')
 		if math.random(1,100) <= 17 then
 			if usingAdvanced then
 				TriggerServerEvent("qb-doorlock:server:removeLockpick", "advancedlockpick")
